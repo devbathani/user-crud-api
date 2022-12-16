@@ -1,29 +1,19 @@
 import express from 'express';
+import {v4 as uuidv4} from 'uuid'
 const router = express.Router();
 
 const userData = [
-    {
-        name : "Dev Bathani",
-        address : "Mars",
-        age : 21
-    },
-    {
-        name : "Dev Bathani",
-        address: "Mars",
-        age: 21
-    },
-    {
-        name : "Dev Bathani",
-        address: "Mars",
-        age : 21
-    }
 ]
 
 router.get('/', (req,res) => {
     res.send(userData);
 },);
 
-router.post();
+router.post('/', (req, res) =>{
+    const user = req.body;
+    userData.push({...user, id: uuidv4()});
+    res.send(`Username : ${user.name}`);
+},);
 
 export default router;
 
