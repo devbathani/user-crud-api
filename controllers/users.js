@@ -1,9 +1,16 @@
 import {v4 as uuidv4} from 'uuid'
 
+let userData = []
+
+
+export const getUser = (req,res) => {
+    res.send(userData);
+}
+
 export const createUser = (req, res) =>{
     const user = req.body;
     userData.push({...user, id: uuidv4()});
-    res.send(`User id : ${user.id}`);
+    res.send(`Username : ${user.name}`);
 }
 
 export const getUserByID = (req, res) => {
